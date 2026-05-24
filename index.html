@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Para Heilen — Feliz Cumpleaños</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Special+Elite&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --ink:    #1a1008;
+      --paper:  #f5efe0;
+      --paper2: #ede5cf;
+      --crease: #c9b99a;
+      --red:    #8b1a1a;
+      --green:  #1a4a2e;
+      --gold:   #b8860b;
+      --muted:  #7a6a55;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      min-height: 100%;
+      background: #2a1f14;
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(0,0,0,.08) 39px, rgba(0,0,0,.08) 40px),
+        repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(0,0,0,.04) 39px, rgba(0,0,0,.04) 40px);
+      font-family: 'Playfair Display', Georgia, serif;
+      color: var(--ink);
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='28' viewBox='0 0 20 28'%3E%3Cpath d='M5 0 L5 20 L9 16 L12 24 L14 23 L11 15 L17 15 Z' fill='%231a1008' stroke='%23f5efe0' stroke-width='0.5'/%3E%3C/svg%3E") 5 0, auto;
+    }
+
+    .page-wrap {
+      max-width: 700px;
+      margin: 3rem auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    /* ── SOBRE ── */
+    .envelope-flap {
+      background: var(--paper2);
+      border-bottom: 2px solid var(--crease);
+      padding: 1.2rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 8px 8px 0 0;
+      box-shadow: 0 -4px 18px rgba(0,0,0,.3);
+      position: relative;
+      overflow: hidden;
+    }
+    .envelope-flap::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      border-left: 220px solid transparent;
+      border-right: 220px solid transparent;
+      border-top: 58px solid #d9cfbb;
+      pointer-events: none;
+    }
+
+    .stamp {
+      width: 60px; height: 72px;
+      border: 3px solid var(--crease);
+      background: var(--paper);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: inset 0 0 0 4px var(--paper2);
+      position: relative; z-index: 1;
+      transition: transform .3s;
+      cursor: pointer;
+    }
+    .stamp:hover { transform: rotate(-8deg) scale(1.1); }
+
+    .postmark {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .6rem;
+      letter-spacing: .1em;
+      color: var(--muted);
+      text-align: center; z-index: 1;
+    }
+    .postmark .circle {
+      width: 64px; height: 64px;
+      border: 2px solid var(--crease);
+      border-radius: 50%;
+      display: flex; align-items: center;
+      justify-content: center; flex-direction: column;
+      gap: 2px; margin: 0 auto;
+      color: var(--red); opacity: .65;
+    }
+
+    /* ── CARTA ── */
+    .letter {
+      background: var(--paper);
+      padding: 3.5rem 4rem 4rem;
+      box-shadow: 0 4px 60px rgba(0,0,0,.4), inset 0 0 120px rgba(0,0,0,.02);
+      position: relative;
+      border-radius: 0 0 4px 4px;
+      background-image: repeating-linear-gradient(
+        transparent, transparent 31px,
+        rgba(100,80,50,.12) 31px, rgba(100,80,50,.12) 32px
+      );
+      background-size: 100% 32px;
+    }
+    .letter::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; top: 50%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 5%, var(--crease) 15%, var(--crease) 85%, transparent 95%);
+      opacity: .35; pointer-events: none;
+    }
+    .letter::before {
+      content: '';
+      position: absolute;
+      left: 3.5rem; top: 0; bottom: 0;
+      width: 1px;
+      background: rgba(139,26,26,.22);
+      pointer-events: none;
+    }
+
+    @media (max-width: 560px) {
+      .letter { padding: 2.5rem 1.8rem 3rem; }
+      .letter::before { left: 2rem; }
+    }
+
+    /* ── TIPOGRAFÍA ── */
+    .letter-date {
+      font-family: 'Special Elite', cursive;
+      font-size: .85rem;
+      color: var(--muted);
+      text-align: right;
+      margin-bottom: 2.5rem;
+      letter-spacing: .05em;
+    }
+    .saludo {
+      font-family: 'Special Elite', cursive;
+      font-size: 1.55rem;
+      color: var(--ink);
+      margin-bottom: 1.8rem;
+      line-height: 1.4;
+    }
+    .parrafo {
+      font-size: 1.05rem;
+      line-height: 2;
+      color: #2e2416;
+      margin-bottom: 1.5rem;
+    }
+    .parrafo em  { font-style: italic; color: var(--red); }
+    .parrafo strong { font-weight: 700; color: var(--green); }
+
+    .firma {
+      margin-top: 3rem;
+      font-family: 'Special Elite', cursive;
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+    .firma-nombre {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-style: italic;
+      color: var(--ink);
+      margin-top: .5rem;
+      display: block;
+      transform: rotate(-1.5deg);
+      transform-origin: left;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* ── POST-IT ── */
+    .postit {
+      background: #fff9c4;
+      padding: 1.1rem 1.4rem 1rem;
+      box-shadow: 3px 4px 14px rgba(0,0,0,.18), inset 0 -2px 0 rgba(0,0,0,.06);
+      font-family: 'Special Elite', cursive;
+      font-size: .88rem;
+      line-height: 1.75;
+      color: #333;
+      transform: rotate(1.8deg);
+      margin: 2.2rem 0;
+      position: relative;
+      max-width: 340px;
+    }
+    .postit::before {
+      content: '';
+      position: absolute;
+      top: -8px; left: 50%;
+      transform: translateX(-50%);
+      width: 40px; height: 14px;
+      background: rgba(200,180,0,.4);
+    }
+
+    /* ── FOTOS POLAROID ── */
+    .photo-row {
+      display: flex;
+      gap: 1.2rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+    .photo-slot {
+      flex: 1; min-width: 130px;
+      aspect-ratio: 4/5;
+      background: white;
+      border: 1px solid #ddd;
+      box-shadow: 2px 3px 12px rgba(0,0,0,.15);
+      display: flex; align-items: center;
+      justify-content: center; flex-direction: column;
+      gap: .5rem; padding: .4rem .4rem .9rem;
+      position: relative;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .photo-slot:nth-child(odd)  { transform: rotate(-1.2deg); }
+    .photo-slot:nth-child(even) { transform: rotate(1.5deg); }
+    .photo-slot:hover { transform: rotate(0) scale(1.06) translateY(-6px); z-index: 10; box-shadow: 4px 8px 24px rgba(0,0,0,.25); }
+    .photo-slot img { width: 100%; flex: 1; object-fit: cover; min-height: 0; display: none; }
+    .photo-slot img[src]:not([src=""]) { display: block; }
+    .photo-slot .ph-placeholder { font-size: 1.8rem; opacity: .22; }
+    .photo-slot .ph-text {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .52rem; letter-spacing: .1em; color: #bbb; text-align: center;
+    }
+    .photo-slot .ph-caption {
+      font-family: 'Special Elite', cursive;
+      font-size: .65rem; color: #888;
+      margin-top: auto; text-align: center;
+    }
+    .photo-slot::before {
+      content: '';
+      position: absolute; top: -8px; left: 50%;
+      transform: translateX(-50%);
+      width: 38px; height: 14px;
+      background: rgba(210,190,130,.5);
+    }
+
+    /* ── STICKERS ── */
+    .sticker-row { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; margin: 1.5rem 0; }
+    .sticker {
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; width: 52px; height: 52px;
+      border-radius: 50%;
+      background: var(--paper2);
+      border: 1.5px solid var(--crease);
+      box-shadow: 1px 2px 6px rgba(0,0,0,.14);
+      transition: transform .25s, box-shadow .25s;
+      cursor: default;
+    }
+    .sticker:hover { transform: scale(1.28) rotate(-12deg); box-shadow: 2px 4px 14px rgba(0,0,0,.22); }
+
+    .hand-divider { text-align: center; margin: 2rem 0; color: var(--crease); font-size: 1.1rem; letter-spacing: .4em; }
+
+    /* ── DOODLES ── */
+    .doodle { position: absolute; pointer-events: none; opacity: .15; }
+    .doodle-bass  { bottom: 3.5rem; right: 2.5rem; width: 80px; transform: rotate(15deg); }
+    .doodle-note  { top: 2.5rem; right: 3rem; width: 40px; }
+
+    /* ── EASTER EGG ELEMENTS ── */
+    #confetti-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 9999; display: none; }
+
+    .toast-popup {
+      position: fixed; bottom: 2rem; left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--ink); color: var(--paper);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .75rem; letter-spacing: .15em;
+      padding: .75rem 1.8rem; border-radius: 2px;
+      opacity: 0; transition: opacity .3s, transform .3s;
+      pointer-events: none; z-index: 9998;
+      text-align: center; max-width: 88vw; white-space: normal;
+    }
+    .toast-popup.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    .cursor-note {
+      position: fixed; pointer-events: none; z-index: 9997;
+      font-size: 1rem; opacity: 0;
+      animation: note-float 1.2s ease forwards;
+    }
+    @keyframes note-float {
+      0%   { opacity: .8; transform: translateY(0) scale(1); }
+      100% { opacity: 0;  transform: translateY(-42px) scale(.5); }
+    }
+
+    /* ── CAT DECORATIONS ── */
+    .cat-stamp {
+      position: absolute;
+      pointer-events: none;
+      user-select: none;
+      line-height: 1;
+    }
+
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      20% { transform: translateX(-6px) rotate(-.4deg); }
+      40% { transform: translateX(6px)  rotate(.4deg); }
+      60% { transform: translateX(-4px); }
+      80% { transform: translateX(4px); }
+    }
+    .shaking { animation: shake .5s ease; }
+
+    .overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,.45);
+      z-index: 9999; opacity: 0; pointer-events: none; transition: opacity .3s;
+    }
+    .overlay.show { opacity: 1; pointer-events: all; }
+
+    .secret-msg {
+      position: fixed; top: 50%; left: 50%;
+      transform: translate(-50%,-50%) scale(.88);
+      background: var(--paper); color: var(--ink);
+      padding: 2.5rem 3rem; max-width: 380px; width: 90%;
+      text-align: center; z-index: 10000;
+      opacity: 0; pointer-events: none;
+      transition: opacity .4s, transform .4s;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; line-height: 1.75;
+      border: 1.5px solid var(--crease);
+      box-shadow: 0 8px 40px rgba(0,0,0,.4);
+    }
+    .secret-msg.show { opacity: 1; transform: translate(-50%,-50%) scale(1); pointer-events: all; cursor: pointer; }
+    .secret-msg .close-hint {
+      display: block; margin-top: 1.2rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: .6rem; letter-spacing: .2em; color: var(--muted);
+    }
+    .secret-msg h3 {
+      font-family: 'Special Elite', cursive;
+      font-size: 1.1rem; color: var(--red);
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+<div class="overlay" id="overlay"></div>
+
+<div class="secret-msg" id="secretMsg">
+  <h3>✦ Para Heilen ✦</h3>
+  Encontraste un secreto.<br/><br/>
+  Que este año esté tan lleno de buenas cosas que no quepan todas en una carta.
+  <span class="close-hint">— click para cerrar —</span>
+</div>
+
+<div class="toast-popup" id="toast"></div>
+
+<div class="page-wrap">
+
+  <div class="envelope-flap">
+    <div class="stamp" id="stamp" title="¡Haz click!">🎂</div>
+    <div class="postmark">
+      <div class="circle">
+        <span style="font-size:.5rem;letter-spacing:.12em;">CORREOS</span>
+        <span style="font-size:.75rem;">✉</span>
+        <span style="font-size:.48rem;">MAYO 2026</span>
+      </div>
+    </div>
+    <div style="font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.1em;color:var(--muted);text-align:right;z-index:1;">
+      Para:<br/>
+      <strong style="color:var(--ink);font-size:.8rem;">Heilen</strong><br/>
+      Por donde sea que estés
+    </div>
+  </div>
+
+  <div class="letter" id="letter">
+
+    <!-- Cat decorations scattered on the letter paper -->
+
+    <!-- Carita gato esquina superior derecha -->
+    <svg class="cat-stamp" style="top:1.8rem;right:7rem;width:38px;opacity:.14;transform:rotate(12deg);" viewBox="0 0 40 36" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <!-- orejas -->
+      <polygon points="4,14 0,2 12,8" fill="rgba(26,16,8,.15)"/>
+      <polygon points="36,14 40,2 28,8" fill="rgba(26,16,8,.15)"/>
+      <!-- cara -->
+      <ellipse cx="20" cy="22" rx="18" ry="13"/>
+      <!-- ojos -->
+      <ellipse cx="13" cy="20" rx="2.5" ry="3" fill="var(--ink)" stroke="none"/>
+      <ellipse cx="27" cy="20" rx="2.5" ry="3" fill="var(--ink)" stroke="none"/>
+      <!-- nariz -->
+      <path d="M18.5 24 L20 22.5 L21.5 24 Z" fill="var(--ink)" stroke="none"/>
+      <!-- bigotes -->
+      <line x1="1"  y1="23" x2="13" y2="24"/>
+      <line x1="1"  y1="26" x2="13" y2="25.5"/>
+      <line x1="27" y1="24" x2="39" y2="23"/>
+      <line x1="27" y1="25.5" x2="39" y2="26"/>
+      <!-- boca -->
+      <path d="M17 26.5 Q20 29 23 26.5" fill="none"/>
+    </svg>
+
+    <!-- Patita gato 1 — margen izquierdo -->
+    <svg class="cat-stamp" style="top:38%;left:.6rem;width:28px;opacity:.1;transform:rotate(-20deg);" viewBox="0 0 30 36" xmlns="http://www.w3.org/2000/svg" fill="var(--ink)">
+      <ellipse cx="15" cy="26" rx="9" ry="8"/>
+      <ellipse cx="5"  cy="13" rx="4" ry="5"/>
+      <ellipse cx="12" cy="9"  rx="4" ry="5"/>
+      <ellipse cx="19" cy="9"  rx="4" ry="5"/>
+      <ellipse cx="26" cy="13" rx="4" ry="5"/>
+    </svg>
+
+    <!-- Patita gato 2 — derecha medio -->
+    <svg class="cat-stamp" style="top:55%;right:.5rem;width:22px;opacity:.09;transform:rotate(30deg);" viewBox="0 0 30 36" xmlns="http://www.w3.org/2000/svg" fill="var(--ink)">
+      <ellipse cx="15" cy="26" rx="9" ry="8"/>
+      <ellipse cx="5"  cy="13" rx="4" ry="5"/>
+      <ellipse cx="12" cy="9"  rx="4" ry="5"/>
+      <ellipse cx="19" cy="9"  rx="4" ry="5"/>
+      <ellipse cx="26" cy="13" rx="4" ry="5"/>
+    </svg>
+
+    <!-- Patita gato 3 — abajo izquierda -->
+    <svg class="cat-stamp" style="bottom:5rem;left:1rem;width:20px;opacity:.09;transform:rotate(-10deg);" viewBox="0 0 30 36" xmlns="http://www.w3.org/2000/svg" fill="var(--ink)">
+      <ellipse cx="15" cy="26" rx="9" ry="8"/>
+      <ellipse cx="5"  cy="13" rx="4" ry="5"/>
+      <ellipse cx="12" cy="9"  rx="4" ry="5"/>
+      <ellipse cx="19" cy="9"  rx="4" ry="5"/>
+      <ellipse cx="26" cy="13" rx="4" ry="5"/>
+    </svg>
+
+    <!-- Carita gato 2 — abajo derecha pequeña -->
+    <svg class="cat-stamp" style="bottom:6rem;right:6rem;width:26px;opacity:.1;transform:rotate(-8deg);" viewBox="0 0 40 36" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="4,14 0,2 12,8" fill="rgba(26,16,8,.15)"/>
+      <polygon points="36,14 40,2 28,8" fill="rgba(26,16,8,.15)"/>
+      <ellipse cx="20" cy="22" rx="18" ry="13"/>
+      <ellipse cx="13" cy="20" rx="2.5" ry="3" fill="var(--ink)" stroke="none"/>
+      <ellipse cx="27" cy="20" rx="2.5" ry="3" fill="var(--ink)" stroke="none"/>
+      <path d="M18.5 24 L20 22.5 L21.5 24 Z" fill="var(--ink)" stroke="none"/>
+      <line x1="1"  y1="23" x2="13" y2="24"/>
+      <line x1="1"  y1="26" x2="13" y2="25.5"/>
+      <line x1="27" y1="24" x2="39" y2="23"/>
+      <line x1="27" y1="25.5" x2="39" y2="26"/>
+      <path d="M17 26.5 Q20 29 23 26.5" fill="none"/>
+    </svg>
+
+    <!-- doodles originales -->
+
+    <svg class="doodle doodle-bass" viewBox="0 0 80 200" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linecap="round">
+      <ellipse cx="40" cy="140" rx="28" ry="38"/>
+      <ellipse cx="40" cy="130" rx="16" ry="22"/>
+      <rect x="36" y="30" width="8" height="92" rx="3"/>
+      <rect x="32" y="14" width="16" height="20" rx="3"/>
+      <circle cx="34" cy="18" r="3"/><circle cx="46" cy="18" r="3"/>
+      <circle cx="34" cy="28" r="3"/><circle cx="46" cy="28" r="3"/>
+      <line x1="35" y1="30" x2="35" y2="115"/>
+      <line x1="38" y1="30" x2="38" y2="115"/>
+      <line x1="41" y1="30" x2="41" y2="115"/>
+      <line x1="44" y1="30" x2="44" y2="115"/>
+    </svg>
+
+    <svg class="doodle doodle-note" viewBox="0 0 44 80" xmlns="http://www.w3.org/2000/svg" fill="var(--ink)">
+      <ellipse cx="14" cy="66" rx="12" ry="9" transform="rotate(-15 14 66)"/>
+      <rect x="24" y="10" width="3" height="56"/>
+      <path d="M27 10 L44 4 L44 20 L27 26 Z"/>
+    </svg>
+
+    <div class="letter-date">Mayo, 2026 — con mucho cariño</div>
+
+    <div class="saludo">Querida Heilen,</div>
+
+    <p class="parrafo">
+      No hace mucho que te conozco. Y sin embargo, ya sé que sos
+      de esas personas que uno <em>no se olvida fácil</em>.
+      De las que uno encuentra pocas veces, si es que las encuentra —
+      como un gato que te elige sin pedirte permiso.
+    </p>
+
+    <p class="parrafo">
+      Hay algo en vos que es difícil de explicar con precisión —
+      no es una sola cosa, es la suma de todas. La forma en que sos,
+      cómo tratás a la gente, lo que transmitís sin proponértelo.
+      <strong>Con poco tiempo bastó para notarlo.</strong>
+    </p>
+
+    <div class="postit">
+      📌 Recordatorio importante:<br/>
+      Hoy podés pedir lo que querás.<br/>
+      Es tu día. Las reglas las ponés vos.
+    </div>
+
+    <p class="parrafo">
+      El tiempo que llevamos conociéndonos es corto, sí.
+      Pero eso no le quita nada al valor de lo que ya está —
+      y más bien me hace pensar que <em>lo que viene es todavía mejor</em>.
+      Hay personas que tardan años en mostrarse. Vos no necesitaste tanto.
+    </p>
+
+    <!-- Fotos -->
+    <div class="photo-row">
+      <div class="photo-slot">
+        <img src="" alt="foto 1" id="img1"/>
+        <span class="ph-placeholder">📷</span>
+        <span class="ph-text">TU FOTO AQUÍ</span>
+        <span class="ph-caption">un buen momento</span>
+      </div>
+      <div class="photo-slot">
+        <img src="" alt="foto 2" id="img2"/>
+        <span class="ph-placeholder">🎵</span>
+        <span class="ph-text">TU FOTO AQUÍ</span>
+        <span class="ph-caption">la música</span>
+      </div>
+      <div class="photo-slot">
+        <img src="" alt="foto 3" id="img3"/>
+        <span class="ph-placeholder">✨</span>
+        <span class="ph-text">TU FOTO AQUÍ</span>
+        <span class="ph-caption">lo que más querés</span>
+      </div>
+    </div>
+
+    <p class="parrafo">
+      Espero que este año te dé todo lo que merecés —
+      y merecés bastante, por si no te lo dicen seguido.
+      Que la gente a tu alrededor esté a tu altura,
+      y que haya muchos momentos que valgan la pena recordar.
+    </p>
+
+    <p class="parrafo">
+      Ah, y una cosa más — tengo algo pequeño para vos.
+      <em>Un regalo sedoso</em>, de esos que vienen de reinos
+      lejanos y viajan bien. Ya lo vas a ver. 🕷️
+    </p>
+
+    <div class="hand-divider">— ✦ —</div>
+
+    <p class="parrafo">
+      Feliz cumpleaños, Heilen.<br/>
+      Me alegra mucho haberte conocido, <em>aunque sea hace poco.</em>
+    </p>
+
+    <div class="sticker-row">
+      <div class="sticker">🎂</div>
+      <div class="sticker">🐱</div>
+      <div class="sticker">🐶</div>
+      <div class="sticker">🎵</div>
+      <div class="sticker">🤘</div>
+      <div class="sticker">🌙</div>
+    </div>
+
+    <div class="firma">
+      Con todo el cariño del mundo,
+      <span class="firma-nombre" id="firmaNombre">✍︎ quien te escribió esto</span>
+    </div>
+
+    <p style="margin-top:2.5rem;font-family:'Special Elite',cursive;font-size:.82rem;color:var(--muted);line-height:1.7;">
+      <em>P.D. —</em> Esta carta tiene algunos secretos escondidos. Explorá con curiosidad. 🤫
+    </p>
+
+  </div>
+</div>
+
+<!-- YouTube iframe oculto -->
+<iframe id="ytPlayer"
+  src="https://www.youtube.com/embed/zoq0tAKpLBI?enablejsapi=1&autoplay=0&controls=0&loop=1&playlist=zoq0tAKpLBI"
+  style="display:none;" allow="autoplay" title="música"></iframe>
+
+<!-- Botón flotante de música -->
+<div id="musicBtn" title="Reproducir música" style="
+  position: fixed;
+  bottom: 1.8rem; right: 1.8rem;
+  width: 52px; height: 52px;
+  background: var(--paper2, #ede5cf);
+  border: 1.5px solid #c9b99a;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(0,0,0,.35);
+  z-index: 8000;
+  transition: transform .25s, box-shadow .25s;
+  user-select: none;
+">🎵</div>
+
+<script>
+/* EE 1 — Konami Code → confeti */
+const KONAMI = [38,38,40,40,37,39,37,39,66,65];
+let ki = 0;
+document.addEventListener('keydown', e => {
+  ki = e.keyCode === KONAMI[ki] ? ki+1 : 0;
+  if (ki === KONAMI.length) { ki=0; launchConfetti(); }
+});
+
+function launchConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  canvas.style.display = 'block';
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+  const cols = ['#c8ff00','#ff3d6e','#6ee7ff','#fff','#b8860b','#ffb347'];
+  const pieces = Array.from({length:200}, () => ({
+    x: Math.random()*canvas.width, y: Math.random()*-canvas.height,
+    r: 4+Math.random()*6, d: 2+Math.random()*3,
+    color: cols[Math.floor(Math.random()*cols.length)],
+    tilt: Math.random()*10-10, tiltAngle: 0, tiltSpeed: .05+Math.random()*.08,
+    shape: Math.random()>.5?'rect':'circle'
+  }));
+  let f=0;
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      ctx.save(); ctx.fillStyle=p.color;
+      ctx.translate(p.x,p.y); ctx.rotate(p.tiltAngle*Math.PI/180);
+      if(p.shape==='rect') ctx.fillRect(-p.r/2,-p.r/2,p.r,p.r*1.6);
+      else { ctx.beginPath(); ctx.arc(0,0,p.r/2,0,2*Math.PI); ctx.fill(); }
+      ctx.restore();
+      p.y+=p.d; p.tiltAngle+=p.tiltSpeed; p.x+=Math.sin(f/30)*1.2;
+      if(p.y>canvas.height){ p.y=-10; p.x=Math.random()*canvas.width; }
+    });
+    f++;
+    if(f<350) requestAnimationFrame(draw);
+    else { ctx.clearRect(0,0,canvas.width,canvas.height); canvas.style.display='none'; }
+  }
+  draw();
+  showToast('🎉 ¡Feliz cumpleaños Heilen! 🎂');
+}
+
+/* EE 2 — Click en sello → riff de bajo + animación */
+document.getElementById('stamp').addEventListener('click', function() {
+  this.textContent = '🤘';
+  setTimeout(() => this.textContent = '🎂', 1800);
+  try {
+    const ac = new (window.AudioContext||window.webkitAudioContext)();
+    const notes = [55,55,82.4,73.4,55,55,82.4,98];
+    let t = ac.currentTime;
+    notes.forEach(freq => {
+      const o=ac.createOscillator(), g=ac.createGain();
+      o.type='sawtooth'; o.frequency.value=freq;
+      g.gain.setValueAtTime(.35,t);
+      g.gain.exponentialRampToValueAtTime(.001,t+.28);
+      o.connect(g); g.connect(ac.destination);
+      o.start(t); o.stop(t+.3);
+      t+=.22;
+    });
+  } catch(e){}
+  showToast('🎸 ♩ DOM DOM DOM DOOOOM ♩ 🎸');
+});
+
+/* EE 3 — Triple click en firma → mensaje secreto */
+let cc=0, ct;
+document.getElementById('firmaNombre').addEventListener('click', function() {
+  cc++; clearTimeout(ct);
+  ct = setTimeout(() => cc=0, 600);
+  if(cc>=3) {
+    cc=0;
+    document.getElementById('secretMsg').classList.add('show');
+    document.getElementById('overlay').classList.add('show');
+  }
+});
+document.getElementById('secretMsg').addEventListener('click', () => {
+  document.getElementById('secretMsg').classList.remove('show');
+  document.getElementById('overlay').classList.remove('show');
+});
+
+/* EE 4 — Notas musicales siguen el cursor */
+const NOTES=['♩','♪','♫','♬','𝄞'];
+let lastNote=0;
+document.addEventListener('mousemove', e => {
+  const now=Date.now(); if(now-lastNote<180) return; lastNote=now;
+  if(Math.random()>.3) return;
+  const el=document.createElement('div');
+  el.className='cursor-note';
+  el.textContent=NOTES[Math.floor(Math.random()*NOTES.length)];
+  el.style.cssText=`left:${e.clientX+8}px;top:${e.clientY-8}px;color:${['var(--red)','var(--green)','var(--gold)'][Math.floor(Math.random()*3)]};`;
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),1200);
+});
+
+/* EE 5 — Escribir "heilen" → carta tiembla + confeti */
+let buf='';
+document.addEventListener('keypress', e => {
+  buf=(buf+e.key).slice(-6).toLowerCase();
+  if(buf==='heilen') {
+    buf='';
+    const l=document.getElementById('letter');
+    l.classList.add('shaking');
+    l.addEventListener('animationend',()=>l.classList.remove('shaking'),{once:true});
+    launchConfetti();
+  }
+});
+
+/* EE 6 — Hover en stickers → nota musical */
+document.querySelectorAll('.sticker').forEach((s,i) => {
+  s.addEventListener('mouseenter', () => {
+    try {
+      const ac=new(window.AudioContext||window.webkitAudioContext)();
+      const o=ac.createOscillator(), g=ac.createGain();
+      const freqs=[261,294,329,392,523,659];
+      o.frequency.value=freqs[i]||440; o.type='triangle';
+      g.gain.setValueAtTime(.18,ac.currentTime);
+      g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+.5);
+      o.connect(g); g.connect(ac.destination);
+      o.start(); o.stop(ac.currentTime+.5);
+    } catch(e){}
+  });
+});
+
+/* EE 7 — Click derecho → pista */
+document.getElementById('letter').addEventListener('contextmenu', e => {
+  e.preventDefault();
+  showToast('🤫 Pista: intentá el código Konami — ↑↑↓↓←→←→BA');
+});
+
+/* EE 8 — Click en las fotos polaroid → giran y revelan texto */
+document.querySelectorAll('.photo-slot').forEach(slot => {
+  slot.addEventListener('dblclick', () => {
+    const msgs = [
+      '📸 Un buen recuerdo vale más que mil palabras.',
+      '🎵 La música es lo que los sentimientos suenan.',
+      '✨ Guardá este momento. Lo vas a querer recordar.'
+    ];
+    showToast(msgs[Math.floor(Math.random()*msgs.length)]);
+  });
+});
+
+/* TOAST utility */
+function showToast(msg) {
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 3500);
+}
+
+/* MÚSICA — botón play/pause con YouTube iframe API */
+let ytReady = false, playing = false;
+const btn = document.getElementById('musicBtn');
+const iframe = document.getElementById('ytPlayer');
+
+// Cargar YouTube IFrame API
+const tag = document.createElement('script');
+tag.src = 'https://www.youtube.com/iframe_api';
+document.head.appendChild(tag);
+
+let player;
+window.onYouTubeIframeAPIReady = function() {
+  player = new YT.Player('ytPlayer', {
+    videoId: 'zoq0tAKpLBI',
+    playerVars: { autoplay: 0, controls: 0, loop: 1, playlist: 'zoq0tAKpLBI' },
+    events: {
+      onReady: () => { ytReady = true; iframe.style.display = 'block'; }
+    }
+  });
+};
+
+btn.addEventListener('click', () => {
+  if (!ytReady) return;
+  if (playing) {
+    player.pauseVideo();
+    btn.textContent = '🎵';
+    btn.style.opacity = '.7';
+    playing = false;
+  } else {
+    player.playVideo();
+    btn.textContent = '🎶';
+    btn.style.opacity = '1';
+    playing = true;
+    showToast('♪ Música para acompañar la carta ♪');
+  }
+});
+
+btn.addEventListener('mouseenter', () => { btn.style.transform = 'scale(1.15)'; btn.style.boxShadow = '0 6px 24px rgba(0,0,0,.45)'; });
+btn.addEventListener('mouseleave', () => { btn.style.transform = 'scale(1)';    btn.style.boxShadow = '0 4px 18px rgba(0,0,0,.35)'; });
+</script>
+</body>
+</html>
